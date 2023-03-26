@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import { MainView } from './components/MainView';
 import { LoginComponent } from './components/Login';
 import { RegisterComponent } from './components/Register';
+import { MovieList } from './components/MovieList';
 
 
 
@@ -15,11 +16,11 @@ function App() {
 
   return (
     <>
-      {/* <Header /> */}
+      <Header />
       <Routes>
-        <Route path="/" element={<Header />}></Route>
-        {/* <Route path="/about" element={<AboutPage />} />
-        <Route path="/catalog" element={<Catalog />} />*/}
+        <Route path="/" element={<MainView />}></Route>
+        {/* <Route path="/about" element={<AboutPage />} />*/}
+        <Route path="/catalog" element={<MovieList />} />
         <Route path="/login" element={<LoginComponent />} /> 
         <Route path="/register" element={<RegisterComponent />} />
         {/*<Route path='/details/:movieId' element={<Movie />}></Route>
