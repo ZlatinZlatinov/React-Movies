@@ -1,16 +1,17 @@
 
-const url = 'http://localhost:3030/users/login';
 
 async function logUser(userData) {
+    const url = 'http://localhost:3030/users/login';
+
     try {
         const response = await fetch(url, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(userData)
-        }); 
+        });
 
         if (response.status !== 200) {
-            
+
             return { msg: 'Wrong username or password!' };
         }
 
@@ -20,8 +21,25 @@ async function logUser(userData) {
     } catch (err) {
         console.log('err here: ' + err);
     }
-} 
+}
 
+async function logOutUser(token) {
+    const url = 'http://localhost:3030/users/logout';
+
+    const response = await fetch(url, {
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': token
+        }
+    });
+
+    if (response.status === 200) {
+        return true;
+    }
+
+    return false;
+}
 export {
-    logUser
+    logUser, 
+    logOutUser
 }

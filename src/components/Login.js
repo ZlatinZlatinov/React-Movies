@@ -30,10 +30,10 @@ export function LoginComponent() {
         }
 
         signIn({
-            token: result.sessionToken,
+            token: result.accessToken,
             expiresIn: 3600,
             tokenType: 'Bearer',
-            authState: { email: result.email, userId: result._id, token : result.sessionToken }
+            authState: { email: result.email, userId: result._id, token : result.accessToken }
         });
 
         navigate('/');

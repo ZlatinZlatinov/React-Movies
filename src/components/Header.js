@@ -1,13 +1,15 @@
 import logo1 from '../static/images/logo1.png';
 import { Link } from 'react-router-dom';
-import { useIsAuthenticated } from 'react-auth-kit';
-import { useState } from 'react';
+import { useIsAuthenticated, useAuthUser } from 'react-auth-kit';
+import { UserDiv } from './userDiv';
+import { GuestDiv } from './guestDiv';
 //import { MainView } from './MainView';
 
 
 export default function Header() {
-    const isAuthenticated = useIsAuthenticated(); 
-    const result = isAuthenticated();  
+    const isAuthenticated = useIsAuthenticated();
+    const result = isAuthenticated();
+    const auth = useAuthUser(); 
 
     return (
         <>
@@ -41,13 +43,12 @@ export default function Header() {
                                 </li>
                             </ul>
                             <ul className="nav navbar-nav flex-child-menu menu-right">
-                                <li className="dropdown first">
+                                <li className="btn">
                                     <span className="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown" style={{ color: "white" }}>
-                                        {result ? 'User' : 'Guest'} <i className="fa fa-angle-down" aria-hidden="true"></i>
+                                        {result ? `Welcome, ${auth().email}` : 'Welcome, Guest'} <i className="fa fa-angle-down" aria-hidden="true"></i>
                                     </span>
                                 </li>
-                                <li className="loginLink"><Link to="/login">LOG In</Link></li>
-                                <li className="btn signupLink"><Link to="/register">sign up</Link></li>
+                                {result ?  <UserDiv/> : <GuestDiv /> }
                             </ul>
                         </div>
                         {/* <!-- /.navbar-collapse --> */}
