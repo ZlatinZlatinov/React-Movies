@@ -7,7 +7,7 @@ export function RegisterComponent() {
             <div className="overlay openform">
                 <div className="login-wrapper" id="signup-content">
                     <div className="row" style={{ paddingLeft: '18px' }}>
-                        <Link style={{ color: 'white' }} to="/">Close</Link>
+                        <Link style={{ color: 'white' }} to="/">[X] Close</Link>
                     </div>
                     <div className="login-content">
                         <h3>sign up</h3>

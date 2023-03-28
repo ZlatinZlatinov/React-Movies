@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import './static/css/style.css';
@@ -20,7 +19,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainView />}></Route>
         {/* <Route path="/about" element={<AboutPage />} />*/}
-        <Route path="/catalog" element={<MovieList />} />
+        <Route path="/movies" element={<MovieList />} />
         <Route path="/login" element={<LoginComponent />} /> 
         <Route path="/register" element={<RegisterComponent />} />
         {/*<Route path='/details/:movieId' element={<Movie />}></Route>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 const url = 'http://localhost:3030/data/movies';
 
 export function MovieList() {
-    const url = 'http://localhost:3030/data/movies';
+    //const url = 'http://localhost:3030/data/movies';
     const [moveis, setMovies] = useState([]);
 
     useEffect(() => {
@@ -12,7 +12,7 @@ export function MovieList() {
             .then(response => response.json())
             .then(m => setMovies(m))
             .catch(err => setMovies([]))
-    }, [url]);
+    }, []);
 
     return (
         <>
@@ -70,9 +70,9 @@ export function MovieList() {
                                 </select>
                                 <div className="pagination2">
                                     <span>Page 1 of 2:</span>
-                                    <a className="active" href="#">1</a>
-                                    <a href="#">2</a>
-                                    <a href="#"><i className="ion-arrow-right-b"></i></a>
+                                    <a className="active" href="/">1</a>
+                                    <a href="/">2</a>
+                                    <a href="/"><i className="ion-arrow-right-b"></i></a>
                                 </div>
                             </div>
                         </div>

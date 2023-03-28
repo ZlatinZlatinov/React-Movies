@@ -1,9 +1,14 @@
 import logo1 from '../static/images/logo1.png';
 import { Link } from 'react-router-dom';
+import { useIsAuthenticated } from 'react-auth-kit';
+import { useState } from 'react';
 //import { MainView } from './MainView';
 
 
 export default function Header() {
+    const isAuthenticated = useIsAuthenticated(); 
+    const result = isAuthenticated();  
+
     return (
         <>
             <header className="ht-header">
@@ -38,7 +43,7 @@ export default function Header() {
                             <ul className="nav navbar-nav flex-child-menu menu-right">
                                 <li className="dropdown first">
                                     <span className="btn btn-default dropdown-toggle lv1" data-toggle="dropdown" data-hover="dropdown" style={{ color: "white" }}>
-                                        Guest <i className="fa fa-angle-down" aria-hidden="true"></i>
+                                        {result ? 'User' : 'Guest'} <i className="fa fa-angle-down" aria-hidden="true"></i>
                                     </span>
                                 </li>
                                 <li className="loginLink"><Link to="/login">LOG In</Link></li>
