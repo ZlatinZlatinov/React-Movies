@@ -1,10 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { Addverrtisement } from './Advertisement';
+import { CreateForm } from './CreateForm';
+import { useIsAuthenticated } from 'react-auth-kit';
 
 const url = 'http://localhost:3030/data/movies';
 
 export function MovieList() {
-    //const url = 'http://localhost:3030/data/movies';
+    //const url = 'http://localhost:3030/data/movies'; 
+    const isAuthenticated = useIsAuthenticated(); 
+    const isAuth = isAuthenticated();
     const [moveis, setMovies] = useState([]);
 
     useEffect(() => {
@@ -48,7 +53,7 @@ export function MovieList() {
 
                             {moveis.map((m) => {
                                 return (
-                                    <div className="movie-item-style-2">
+                                    <div className="movie-item-style-2" key={m._id}>
                                         <img src={m.img} alt="None" />
                                         <div className="mv-item-infor">
                                             <h6><Link to={`/details/${m._id}`}>{m.title}</Link></h6>
@@ -93,32 +98,7 @@ export function MovieList() {
                                         </div>
                                     </form>
                                 </div>
-                                <div className="searh-form">
-                                    <h4 className="sb-title">Or Create new one</h4>
-                                    <form className="form-style-1" action="#">
-                                        <div className="row">
-                                            <div className="col-md-12 form-it">
-                                                <label>Movie title</label>
-                                                <input type="text" placeholder="Enter title" />
-                                            </div>
-                                            <div className="col-md-12 form-it">
-                                                <label>Movie description</label>
-                                                <input type="text" placeholder="Enter description" />
-                                            </div>
-                                            <div className="col-md-12 form-it">
-                                                <label>Movie ImageURL</label>
-                                                <input type="text" placeholder="Enter imgURL" />
-                                            </div>
-                                            <div className="col-md-12 ">
-                                                <input className="submit" type="submit" value="Create" />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                <div className="ads">
-                                    <span>Your advertisement here:</span>
-                                    <img src="images/uploads/ads1.png" alt="None" />
-                                </div>
+                                {isAuth ? <CreateForm setMovies={setMovies} /> : <Addverrtisement/>}
                             </div>
                         </div>
                     </div>
