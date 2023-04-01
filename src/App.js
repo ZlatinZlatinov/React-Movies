@@ -8,6 +8,7 @@ import { MainView } from './components/MainView';
 import { LoginComponent } from './components/Login';
 import { RegisterComponent } from './components/Register';
 import { MovieList } from './components/MovieList';
+import { MovieDetails } from './components/MovieDetails';
 
 
 
@@ -22,8 +23,8 @@ function App() {
         <Route path="/movies" element={<MovieList />} />
         <Route path="/login" element={<LoginComponent />} /> 
         <Route path="/register" element={<RegisterComponent />} />
-        {/*<Route path='/details/:movieId' element={<Movie />}></Route>
-        <Route path="*" element={<NotFound />} /> */}
+        <Route path='/details/:movieId' element={<MovieDetails />}></Route>
+        {/*<Route path="*" element={<NotFound />} /> */}
       </Routes>
       <Footer />
     </>
