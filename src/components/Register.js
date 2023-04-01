@@ -1,7 +1,57 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { MainView } from './MainView';
+import { useState } from 'react';
+import { useSignIn } from 'react-auth-kit';
+import { logUser } from '../services/userService';
 
 export function RegisterComponent() {
+    const signIn = useSignIn();
+    const navigate = useNavigate(); 
+
+    const [inputValues, setInputValues] = useState({
+        email: '',
+        password: '',
+        rePass: ''
+    });
+
+    const [err, setErrors] = useState(null);
+
+    function inputHandler(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        setInputValues(state => ({
+            ...state,
+            [name]: value
+        }));
+    }
+
+    async function registerFormHandler(e) {
+        e.preventDefault();
+
+        if (inputValues.password !== inputValues.rePass) {
+            setErrors('Password and repeat-password fields should be equal!');
+            return;
+        }
+
+        const result = await logUser({ email: inputValues.email, password: inputValues.password }, 'register');
+
+        if (result.hasOwnProperty('msg')) {
+            setErrors(result.msg);
+            return;
+        }
+
+        signIn({
+            token: result.accessToken,
+            expiresIn: 3600,
+            tokenType: 'Bearer',
+            authState: { email: result.email, userId: result._id, token: result.accessToken }
+        });
+
+        navigate('/');
+    }
+
+
     return (
         <>
             <div className="overlay openform">
@@ -11,33 +61,45 @@ export function RegisterComponent() {
                     </div>
                     <div className="login-content">
                         <h3>sign up</h3>
-                        <form method="post" action="#">
-                            <div className="row">
-                                <label htmlFor="username-2">
-                                    Username:
-                                    <input type="text" name="username" id="username-2" placeholder="Hugh Jackman" pattern="^[a-zA-Z][a-zA-Z0-9-_\.]{8,20}$" required="required" />
-                                </label>
-                            </div>
-
+                        <form method="POST" onSubmit={registerFormHandler}>
                             <div className="row">
                                 <label htmlFor="email-2">
                                     your email:
-                                    <input type="password" name="email" id="email-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                                    <input type="email"
+                                        name="email"
+                                        id="email-2"
+                                        placeholder="john_cena@wwe.com"
+                                        required="required"
+                                        value={inputValues.email}
+                                        onChange={inputHandler} />
                                 </label>
                             </div>
                             <div className="row">
                                 <label htmlFor="password-2">
                                     Password:
-                                    <input type="password" name="password" id="password-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                                    <input type="password"
+                                        name="password"
+                                        id="password-2"
+                                        placeholder="Atleast 6 characters long"
+                                        required="required"
+                                        value={inputValues.password}
+                                        onChange={inputHandler} />
                                 </label>
                             </div>
                             <div className="row">
                                 <label htmlFor="repassword-2">
                                     re-type Password:
-                                    <input type="password" name="password" id="repassword-2" placeholder="" pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$" required="required" />
+                                    <input type="password"
+                                        name="rePass"
+                                        id="repassword-2"
+                                        placeholder="Should be same as password"
+                                        required="required"
+                                        value={inputValues.rePass}
+                                        onChange={inputHandler} />
                                 </label>
                             </div>
                             <div className="row">
+                                {err && <span>  {err}</span>}
                                 <button type="submit">sign up</button>
                             </div>
                         </form>

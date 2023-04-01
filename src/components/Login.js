@@ -22,7 +22,7 @@ export function LoginComponent() {
     async function loginFormHandler(event) {
         event.preventDefault();
 
-        const result = await logUser({ email, password });
+        const result = await logUser({ email, password }, 'login');
         
         if (result.hasOwnProperty('msg')) {
             setErr(result.msg);

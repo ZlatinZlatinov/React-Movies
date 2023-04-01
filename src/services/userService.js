@@ -1,7 +1,7 @@
 
 
-async function logUser(userData) {
-    const url = 'http://localhost:3030/users/login';
+async function logUser(userData, endPoint) {
+    const url = `http://localhost:3030/users/${endPoint}`;
 
     try {
         const response = await fetch(url, {
