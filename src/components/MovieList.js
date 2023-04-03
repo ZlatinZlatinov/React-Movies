@@ -84,7 +84,7 @@ export function MovieList() {
                         </div>
                         <div className="col-md-4 col-sm-12 col-xs-12">
                             <div className="sidebar">
-                                <SearchMovie />
+                                <SearchMovie setMovies={setMovies}/>
                                 {isAuth ? <CreateForm setMovies={setMovies} /> : <Addverrtisement />}
                             </div>
                         </div>

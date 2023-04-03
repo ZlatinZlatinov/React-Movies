@@ -73,3 +73,16 @@ export async function deleteMovieByID(id, token) {
 
     return false;
 }
+
+export async function searchMovieByName(movieName) {
+    const url = `http://localhost:3030/data/movies?where=title%3D%22${movieName}%22`;
+
+    const response = await fetch(url);
+    const result = await response.json();
+
+    if (result[0]) {
+        return result[0];
+    }
+
+    return { msg: 'No matches were found!' };
+}

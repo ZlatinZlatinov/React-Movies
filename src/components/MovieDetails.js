@@ -1,13 +1,15 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 //import add from '../static/images/uploads/ads1.png';
-import { useAuthUser } from 'react-auth-kit';
+import { useAuthUser, useIsAuthenticated } from 'react-auth-kit';
 import { EditComponent } from './EditComponent';
 import { deleteMovieByID } from '../services/movieService';
 
 export function MovieDetails() {
     const navigate = useNavigate();
     const auth = useAuthUser();
+    const isAuthenticated = useIsAuthenticated();
+    const isAuth = isAuthenticated();
 
     const { movieId } = useParams();
     const url = `http://localhost:3030/data/movies/${movieId}`;
@@ -56,15 +58,16 @@ export function MovieDetails() {
                         <div className="col-md-4 col-sm-12 col-xs-12">
                             <div className="movie-img sticky-sb">
                                 <img src={movie.img} alt='no img' />
-                                {movie._ownerId == auth().userId ? <div className="movie-btn">
-                                    <div className="btn-transform transform-vertical">
-                                        <div><button className="item yellowbtn" onClick={openEditView}>Edit</button></div>
-                                    </div>
-                                    <br />
-                                    <div className="btn-transform transform-vertical red">
-                                        <div><button className="item  redbtn" onClick={deleteMovie}> <i className="ion-play"></i> Delete</button></div>
-                                    </div>
-                                </div> : <></>}
+                                {isAuth && <div>
+                                    {movie._ownerId == auth().userId ? <div className="movie-btn">
+                                        <div className="btn-transform transform-vertical">
+                                            <div><button className="item yellowbtn" onClick={openEditView}>Edit</button></div>
+                                        </div>
+                                        <br />
+                                        <div className="btn-transform transform-vertical red">
+                                            <div><button className="item  redbtn" onClick={deleteMovie}> <i className="ion-play"></i> Delete</button></div>
+                                        </div>
+                                    </div> : <></>}</div>}
                             </div>
                         </div>
                         <div className="col-md-8 col-sm-12 col-xs-12">
