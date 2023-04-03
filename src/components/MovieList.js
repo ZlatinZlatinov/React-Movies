@@ -3,12 +3,13 @@ import { Link } from 'react-router-dom';
 import { Addverrtisement } from './Advertisement';
 import { CreateForm } from './CreateForm';
 import { useIsAuthenticated } from 'react-auth-kit';
+import { SearchMovie } from './searchMovieComponent';
 
 const url = 'http://localhost:3030/data/movies';
 
 export function MovieList() {
     //const url = 'http://localhost:3030/data/movies'; 
-    const isAuthenticated = useIsAuthenticated(); 
+    const isAuthenticated = useIsAuthenticated();
     const isAuth = isAuthenticated();
     const [moveis, setMovies] = useState([]);
 
@@ -83,22 +84,8 @@ export function MovieList() {
                         </div>
                         <div className="col-md-4 col-sm-12 col-xs-12">
                             <div className="sidebar">
-                                <div className="searh-form">
-                                    <h4 className="sb-title">Search for movie</h4>
-                                    <form className="form-style-1" action="#">
-                                        <div className="row">
-                                            <div className="col-md-12 form-it">
-                                                <label>Movie name</label>
-                                                <input type="text" placeholder="Enter keywords" />
-                                            </div>
-
-                                            <div className="col-md-12 ">
-                                                <input className="submit" type="submit" value="Search" />
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                                {isAuth ? <CreateForm setMovies={setMovies} /> : <Addverrtisement/>}
+                                <SearchMovie />
+                                {isAuth ? <CreateForm setMovies={setMovies} /> : <Addverrtisement />}
                             </div>
                         </div>
                     </div>

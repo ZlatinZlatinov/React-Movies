@@ -1,12 +1,12 @@
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 //import add from '../static/images/uploads/ads1.png';
-import { useIsAuthenticated, useAuthUser } from 'react-auth-kit';
+import { useAuthUser } from 'react-auth-kit';
 import { EditComponent } from './EditComponent';
+import { deleteMovieByID } from '../services/movieService';
 
 export function MovieDetails() {
-    const isAuthenticated = useIsAuthenticated();
-    const isAuth = isAuthenticated();
+    const navigate = useNavigate();
     const auth = useAuthUser();
 
     const { movieId } = useParams();
@@ -20,6 +20,13 @@ export function MovieDetails() {
             let newC = !c;
             return newC;
         });
+    }
+
+    async function deleteMovie() {
+        const result = await deleteMovieByID(movieId, auth().token);
+        if (result) {
+            navigate('/movies');
+        }
     }
 
     useEffect(() => {
@@ -55,7 +62,7 @@ export function MovieDetails() {
                                     </div>
                                     <br />
                                     <div className="btn-transform transform-vertical red">
-                                        <div><a href="#" className="item  redbtn"> <i className="ion-play"></i> Delete</a></div>
+                                        <div><button className="item  redbtn" onClick={deleteMovie}> <i className="ion-play"></i> Delete</button></div>
                                     </div>
                                 </div> : <></>}
                             </div>
@@ -146,9 +153,8 @@ export function MovieDetails() {
                         </div>
                     </div>
                 </div>
-            </div> 
-            {isClicked && <EditComponent setClick={setClick} movie={movie} setMovie={setMovie}/>}
+            </div>
+            {isClicked && <EditComponent setClick={setClick} movie={movie} setMovie={setMovie} />}
         </>
-
     );
 }

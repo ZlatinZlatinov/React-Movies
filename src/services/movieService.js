@@ -43,7 +43,7 @@ export async function editMovie(movieData, id, token) {
 
         if (response.status === 200) {
             const result = await response.json();
-            
+
             return result;
         }
 
@@ -54,4 +54,22 @@ export async function editMovie(movieData, id, token) {
     if (msg) {
         return { message: msg }
     }
+}
+
+export async function deleteMovieByID(id, token) {
+    const url = `http://localhost:3030/data/movies/${id}`;
+
+    const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-Authorization': token
+        }
+    });
+
+    if (response.status === 200) {
+        return true;
+    }
+
+    return false;
 }
