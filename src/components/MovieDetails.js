@@ -1,22 +1,32 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 //import add from '../static/images/uploads/ads1.png';
-import { useIsAuthenticated } from 'react-auth-kit';
+import { useIsAuthenticated, useAuthUser } from 'react-auth-kit';
+import { EditComponent } from './EditComponent';
 
 export function MovieDetails() {
     const isAuthenticated = useIsAuthenticated();
     const isAuth = isAuthenticated();
+    const auth = useAuthUser();
 
     const { movieId } = useParams();
     const url = `http://localhost:3030/data/movies/${movieId}`;
     const [movie, setMovie] = useState({});
 
+    const [isClicked, setClick] = useState(false);
+
+    function openEditView() {
+        setClick(c => {
+            let newC = !c;
+            return newC;
+        });
+    }
+
     useEffect(() => {
         fetch(url)
             .then(res => res.json())
             .then(m => setMovie(m));
-    }, []);
-
+    }, [url]);
 
     return (
         <>
@@ -38,16 +48,16 @@ export function MovieDetails() {
                     <div className="row ipad-width2">
                         <div className="col-md-4 col-sm-12 col-xs-12">
                             <div className="movie-img sticky-sb">
-                                <img src={movie.img} />
-                                {isAuth ?? <div className="movie-btn">
+                                <img src={movie.img} alt='no img' />
+                                {movie._ownerId == auth().userId ? <div className="movie-btn">
                                     <div className="btn-transform transform-vertical">
-                                        <div><a href="#" className="item yellowbtn">Edit</a></div>
+                                        <div><button className="item yellowbtn" onClick={openEditView}>Edit</button></div>
                                     </div>
                                     <br />
                                     <div className="btn-transform transform-vertical red">
                                         <div><a href="#" className="item  redbtn"> <i className="ion-play"></i> Delete</a></div>
                                     </div>
-                                </div>}
+                                </div> : <></>}
                             </div>
                         </div>
                         <div className="col-md-8 col-sm-12 col-xs-12">
@@ -136,7 +146,8 @@ export function MovieDetails() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> 
+            {isClicked && <EditComponent setClick={setClick} movie={movie} setMovie={setMovie}/>}
         </>
 
     );

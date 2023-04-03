@@ -29,7 +29,7 @@ export function CreateForm({setMovies}) {
         e.preventDefault(); 
         const data = await createNewMovie(inputValues, token);
 
-        if(data.hasOwnProperty('message')){
+        if(data.hasOwnProperty('msg')){
             setErr(data.message);
             return;
         } 
