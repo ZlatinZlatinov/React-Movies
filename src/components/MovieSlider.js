@@ -5,11 +5,11 @@ import 'react-multi-carousel/lib/styles.css';
 /*--- READ ---- HERE -----*/ 
 /* In order to use this component you will need an access key from 
 https://www.themoviedb.org/
- 
-So if you want to get one watch this video: 
-https://www.youtube.com/watch?v=FlFyrOEz2S4 
 
-and replace the api key in the url with your own*/ 
+So, if you dont know how to get one, watch this video: https://www.youtube.com/watch?v=FlFyrOEz2S4 
+and replace the api key in the url with your own. 
+
+You can checkout the API documentation here: https://developers.themoviedb.org/3/getting-started/introduction*/ 
 
 export function MovieSlider() {
     const [moveis, setMovies] = useState([]);
