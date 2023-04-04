@@ -1,10 +1,10 @@
-import add from '../static/images/uploads/ads1.png';
+const url = 'https://www.templateshub.net/uploads/1549900162%20Movie-Database-min.png';
 
-export function Addverrtisement() {
+export function Advertisement() {
     return (
         <div className="ads">
             <span>Your advertisement here:</span>
-            <img src={add} alt="None" />
+            <img src={url} alt="None" />
         </div>
     );
 }

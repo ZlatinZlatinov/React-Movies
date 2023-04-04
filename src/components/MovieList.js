@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Addverrtisement } from './Advertisement';
+import { Advertisement } from './Advertisement';
 import { CreateForm } from './CreateForm';
 import { useIsAuthenticated } from 'react-auth-kit';
 import { SearchMovie } from './searchMovieComponent';
@@ -12,13 +12,24 @@ export function MovieList() {
     const isAuthenticated = useIsAuthenticated();
     const isAuth = isAuthenticated();
     const [moveis, setMovies] = useState([]);
+    const [pageCount, setPageCount] = useState(1);
 
     useEffect(() => {
         fetch(url)
             .then(response => response.json())
-            .then(m => setMovies(m))
+            .then(m => {
+                setMovies(m);
+                const pages = Math.ceil(m.length / 5);
+                setPageCount(pages);
+            })
             .catch(err => setMovies([]))
     }, []);
+
+    const arr = [1];
+
+    for (let x = 2; x <= pageCount; x++) {
+        arr.push(x);
+    }
 
     return (
         <>
@@ -38,18 +49,7 @@ export function MovieList() {
                     <div className="row ipad-width2">
                         <div className="col-md-8 col-sm-12 col-xs-12">
                             <div className="topbar-filter">
-                                <p>Found <span>{moveis.length}</span> in total</p>
-                                <label>Sort by:</label>
-                                <select>
-                                    <option value="popularity">Popularity Descending</option>
-                                    <option value="popularity">Popularity Ascending</option>
-                                    <option value="rating">Rating Descending</option>
-                                    <option value="rating">Rating Ascending</option>
-                                    <option value="date">Release date Descending</option>
-                                    <option value="date">Release date Ascending</option>
-                                </select>
-                                <a href="movielist.html" className="list"><i className="ion-ios-list-outline active"></i></a>
-                                <a href="moviegrid.html" className="grid"><i className="ion-grid"></i></a>
+                                <p style={{fontSize: '13pt'}}>Found <span>{moveis.length}</span> in total</p>
                             </div>
 
                             {moveis.map((m) => {
@@ -75,17 +75,18 @@ export function MovieList() {
                                     <option value="saab">10 Movies</option>
                                 </select>
                                 <div className="pagination2">
-                                    <span>Page 1 of 2:</span>
-                                    <a className="active" href="/">1</a>
-                                    <a href="/">2</a>
+                                    <span>Page 1 of {pageCount}:</span>
+                                    {arr.map((num, i) => (
+                                        <a href='/' key={i}>{num}</a>
+                                    ))}
                                     <a href="/"><i className="ion-arrow-right-b"></i></a>
                                 </div>
                             </div>
                         </div>
                         <div className="col-md-4 col-sm-12 col-xs-12">
                             <div className="sidebar">
-                                <SearchMovie setMovies={setMovies}/>
-                                {isAuth ? <CreateForm setMovies={setMovies} /> : <Addverrtisement />}
+                                <SearchMovie setMovies={setMovies} />
+                                {isAuth ? <CreateForm setMovies={setMovies} /> : <Advertisement />}
                             </div>
                         </div>
                     </div>

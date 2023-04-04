@@ -27,7 +27,7 @@ export default function Footer() {
 	</div>
 	<div className="ft-copyright">
 		<div className="ft-left">
-			<p>Credits for the template: <a target="_blank" rel='noreferrer' href="https://www.templateshub.net">Templates Hub</a></p>
+			<p>Credits for the template: <a target="_blank" rel='noreferrer' href="https://www.templateshub.net/template/Film-Review-Movie-Database">Templates Hub</a></p>
 		</div>
 		<div className="backtotop">
 			<p><a href="/" id="back-to-top">Back to top  <i className="ion-ios-arrow-thin-up"></i></a></p>
