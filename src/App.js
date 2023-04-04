@@ -9,6 +9,7 @@ import { LoginComponent } from './components/Login';
 import { RegisterComponent } from './components/Register';
 import { MovieList } from './components/MovieList';
 import { MovieDetails } from './components/MovieDetails';
+import { MovieSlider } from './components/MovieSlider';
 
 
 
@@ -18,7 +19,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<MainView />}></Route>
+        <Route path="/" element={<MovieSlider />}></Route>
         {/* <Route path="/about" element={<AboutPage />} />*/}
         <Route path="/movies" element={<MovieList />} />
         <Route path="/login" element={<LoginComponent />} /> 
