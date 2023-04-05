@@ -91,18 +91,6 @@ export function MovieDetails() {
                                                         {/* <!-- movie user review --> */}
                                                         <div className="mv-user-review-item">
                                                             <h3>Best Marvel movie in my opinion</h3>
-                                                            <div className="no-star">
-                                                                <i className="ion-android-star"></i>
-                                                                <i className="ion-android-star"></i>
-                                                                <i className="ion-android-star"></i>
-                                                                <i className="ion-android-star"></i>
-                                                                <i className="ion-android-star"></i>
-                                                                <i className="ion-android-star"></i>
-                                                                <i className="ion-android-star"></i>
-                                                                <i className="ion-android-star"></i>
-                                                                <i className="ion-android-star"></i>
-                                                                <i className="ion-android-star last"></i>
-                                                            </div>
                                                             <p className="time">
                                                                 17 December 2016 by <a href="/"> hawaiipierson</a>
                                                             </p>
