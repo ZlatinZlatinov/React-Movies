@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { searchMovieByName } from "../services/movieService";
+import { useNavigate } from "react-router-dom";
 
-export function SearchMovie({ setMovies }) {
+export function SearchMovie() {
 
     const [movieName, setMovieName] = useState('');
     const [err, setErr] = useState(null);
+    const navigate = useNavigate();
 
     function inputHandler(e) {
         setMovieName(e.target.value);
@@ -19,7 +21,7 @@ export function SearchMovie({ setMovies }) {
             return;
         }
 
-        setMovies([result]);
+        navigate(`/details/${result._id}`);
     }
 
     return (

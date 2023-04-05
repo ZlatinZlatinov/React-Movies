@@ -9,7 +9,8 @@ import { LoginComponent } from './components/Login';
 import { RegisterComponent } from './components/Register';
 import { MovieList } from './components/MovieList';
 import { MovieDetails } from './components/MovieDetails';
-import { MovieSlider } from './components/MovieSlider';
+//import { MovieSlider } from './components/MovieSlider'; // In order to use this component just uncomment it and replace it with 
+// Main view component on route path='/' 
 
 
 
@@ -19,7 +20,7 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/" element={<MovieSlider />}></Route>
+        <Route path="/" element={<MainView />}></Route>
         {/* <Route path="/about" element={<AboutPage />} />*/}
         <Route path="/movies" element={<MovieList />} />
         <Route path="/login" element={<LoginComponent />} /> 
