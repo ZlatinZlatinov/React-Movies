@@ -3,6 +3,8 @@ import { MainView } from './MainView';
 import { useState,  } from 'react';
 import { logUser } from '../services/userService';
 import { useSignIn } from 'react-auth-kit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 export function LoginComponent() {
     const signIn = useSignIn();
@@ -43,8 +45,8 @@ export function LoginComponent() {
         <>
             <div className="overlay openform">
                 <div className="login-wrapper" id="login-content" >
-                    <div className="row" style={{ paddingLeft: '18px' }}>
-                        <Link style={{ color: 'white' }} to="/">[X] Close</Link>
+                    <div className="row" style={{ paddingLeft: '14px', fontSize:'12pt' }}>
+                        <Link style={{ color: 'white' }} to="/"><FontAwesomeIcon icon={faCircleXmark} /> Close</Link>
                     </div>
                     <div className="login-content">
                         <h3>Login</h3>

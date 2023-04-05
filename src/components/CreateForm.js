@@ -50,7 +50,7 @@ export function CreateForm({setMovies}) {
                 <div className="row">
                     <div className="col-md-12 form-it">
                         <label>Movie title</label>
-                        <input type="text" name="title" placeholder="Enter title" value={inputValues.tite} onChange={inputHandler}/>
+                        <input type="text" name="title" placeholder="Enter title" value={inputValues.title} onChange={inputHandler}/>
                     </div>
                     <div className="col-md-12 form-it">
                         <label>Movie description</label>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import { Advertisement } from './Advertisement';
 import { CreateForm } from './CreateForm';
 import { useIsAuthenticated } from 'react-auth-kit';
@@ -61,7 +61,7 @@ export function MovieList() {
                                 <p style={{ fontSize: '13pt' }}>Found <span>{moveis.length}</span> in total</p>
                             </div>
 
-                            {currentPosts.map((m) => <MovieCard movie={m} />)}
+                            {currentPosts.map((m) => <MovieCard key={m._id} movie={m} />)}
 
                             <PagePagination pageCount={pageCount}
                                 paginate={paginate}

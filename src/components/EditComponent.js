@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useAuthUser } from "react-auth-kit";
 import { editMovie } from "../services/movieService";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
 
 export function EditComponent({ setClick, movie, setMovie }) {
 
@@ -28,7 +30,7 @@ export function EditComponent({ setClick, movie, setMovie }) {
         e.preventDefault();
         const result = await editMovie(inputValues, movie._id, token);
 
-        if(result.hasOwnProperty('msg')){
+        if (result.hasOwnProperty('msg')) {
             setErr(result.message);
             return;
         }
@@ -45,7 +47,8 @@ export function EditComponent({ setClick, movie, setMovie }) {
         <div className="overlay openform">
             <div className="login-wrapper" id="signup-content">
                 <div className="row" style={{ paddingLeft: '18px' }}>
-                    <button style={{ color: 'white', background: 'rgba(7,9,10,255)', border: 'none' }} onClick={closeView}>[X] Close</button>
+                    <button style={{ color: 'white', background: 'rgba(7,9,10,255)', border: 'none', fontSize:'12pt' }}
+                        onClick={closeView}><FontAwesomeIcon icon={faCircleXmark} /> Close</button>
                 </div>
                 <div className="login-content">
                     <h3>edit movie details</h3>
