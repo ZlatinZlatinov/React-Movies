@@ -49,7 +49,9 @@ export function CreateForm({ setMovies }) {
             title: '',
             description: '',
             img: ''
-        });
+        }); 
+
+        setErr(null);
     }
 
     return (
