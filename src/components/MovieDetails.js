@@ -39,9 +39,18 @@ export function MovieDetails() {
 
     useEffect(() => {
         fetch(url)
-            .then(res => res.json())
-            .then(m => setMovie(m));
-    }, [url]);
+            .then(res => {
+                if (res.status !== 200) {
+                    navigate('*');
+                }
+
+                return res.json();
+            })
+            .then(m => setMovie(m))
+            .catch(err => {
+                console.log(err);
+            });
+    }, [url, navigate]);
 
 
     return (
