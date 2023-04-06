@@ -5,10 +5,11 @@ import { useSignIn } from 'react-auth-kit';
 import { logUser } from '../services/userService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleXmark } from '@fortawesome/free-regular-svg-icons';
+import { validateUserdata } from '../utils/regUserDataValidation';
 
 export function RegisterComponent() {
     const signIn = useSignIn();
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const [inputValues, setInputValues] = useState({
         email: '',
@@ -31,8 +32,10 @@ export function RegisterComponent() {
     async function registerFormHandler(e) {
         e.preventDefault();
 
-        if (inputValues.password !== inputValues.rePass) {
-            setErrors('Password and repeat-password fields should be equal!');
+        const validattionResult = validateUserdata(inputValues);
+
+        if (validattionResult) {
+            setErrors(validattionResult);
             return;
         }
 
@@ -58,7 +61,7 @@ export function RegisterComponent() {
         <>
             <div className="overlay openform">
                 <div className="login-wrapper" id="signup-content">
-                    <div className="row" style={{ paddingLeft: '14px', fontSize:'12pt' }}>
+                    <div className="row" style={{ paddingLeft: '14px', fontSize: '12pt' }}>
                         <Link style={{ color: 'white' }} to="/"><FontAwesomeIcon icon={faCircleXmark} /> Close</Link>
                     </div>
                     <div className="login-content">

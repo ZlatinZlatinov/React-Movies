@@ -91,7 +91,7 @@ export function MovieDetails() {
                                                 <div className="row">
                                                     <div className="col-md-8 col-sm-12 col-xs-12">
                                                         {/* Movie DEscription: */}
-                                                        <p>{movie.description}</p>
+                                                        <p style={{fontSize: '1.7rem'}}>{movie.description}</p>
 
                                                         <div className="title-hd-sm">
                                                             <h4>User reviews</h4>

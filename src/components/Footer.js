@@ -1,6 +1,8 @@
 import logo1 from '../static/images/logo1.png';
 import { Link } from 'react-router-dom';
 import { useIsAuthenticated } from 'react-auth-kit';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowUp } from '@fortawesome/free-solid-svg-icons';
 
 export default function Footer() {
 	const isAuthenticated = useIsAuthenticated();
@@ -33,10 +35,10 @@ export default function Footer() {
 			</div>
 			<div className="ft-copyright">
 				<div className="ft-left">
-					<p>Credits for the template: <a target="_blank" rel='noreferrer' href="https://www.templateshub.net/template/Film-Review-Movie-Database">Templates Hub</a></p>
+					<p style={{ fontSize: '12pt' }}>Credits for the template: <a target="_blank" rel='noreferrer' href="https://www.templateshub.net/template/Film-Review-Movie-Database">Templates Hub</a></p>
 				</div>
 				<div className="backtotop">
-					<p><a href="/" id="back-to-top">Back to top  <i className="ion-ios-arrow-thin-up"></i></a></p>
+					<p><a href="/" id="back-to-top" style={{ fontSize: '12pt' }}>Back to top  <FontAwesomeIcon icon={faArrowUp} /></a></p>
 				</div>
 			</div>
 		</footer>

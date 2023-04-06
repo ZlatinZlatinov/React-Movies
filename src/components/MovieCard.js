@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 export function MovieCard({ movie }) {
-    function numToDate() {
-        let num = 1546108200;
-        let date = new Date(num * 1000);
+    function numToDate(num) {
+        //let num = 1546108200;
+        let date = new Date(num);
         return (date.toUTCString().split(' ').slice(0, 4).join(' '));
     }
 
@@ -12,7 +14,7 @@ export function MovieCard({ movie }) {
             <img src={movie.img} alt="None" />
             <div className="mv-item-infor">
                 <h6><Link to={`/details/${movie._id}`}>{movie.title}</Link></h6>
-                <p className="rate"><i className="ion-android-star"></i><span>8.1</span> /10</p>
+                <p className="rate" style={{color: 'goldenrod'}}><FontAwesomeIcon icon={faStar}/></p>
                 <p className="describe">{movie.description}</p>
                 <p className="run-time"> Created on:<span>{numToDate(movie._createdOn)}</span></p>
                 <p>Title: <span>{movie.title}</span></p>

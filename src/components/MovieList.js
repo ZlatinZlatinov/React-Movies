@@ -48,6 +48,10 @@ export function MovieList() {
         const value = e.target.value;
         setPostsPerPage(value);
         setPageCount(Math.ceil(currentPosts.length / value));
+    } 
+
+    function pushMovies(movieData){
+        setMovies(state=> [...state, movieData]);
     }
 
     return (
@@ -73,7 +77,7 @@ export function MovieList() {
                         <div className="col-md-4 col-sm-12 col-xs-12">
                             <div className="sidebar">
                                 <SearchMovie />
-                                {isAuth ? <CreateForm setMovies={setMovies} /> : <Advertisement />}
+                                {isAuth ? <CreateForm setMovies={pushMovies} /> : <Advertisement />}
                             </div>
                         </div>
                     </div>

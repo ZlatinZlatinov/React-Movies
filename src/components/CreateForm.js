@@ -1,40 +1,49 @@
 import { useState } from "react";
-import { createNewMovie } from "../services/movieService"; 
+import { createNewMovie } from "../services/movieService";
 import { useAuthUser } from "react-auth-kit";
+import { validateMovieData } from "../utils/movieDataValidation";
 
 
-export function CreateForm({setMovies}) {
+export function CreateForm({ setMovies }) {
     const [inputValues, setInputValue] = useState({
         title: '',
         description: '',
         img: ''
-    }); 
+    });
 
-    const userInfo = useAuthUser(); 
-    const {token} = userInfo(); 
+    const userInfo = useAuthUser();
+    const { token } = userInfo();
 
     const [err, setErr] = useState(null);
 
     function inputHandler(e) {
         const name = e.target.name;
         const value = e.target.value;
-        
+
         setInputValue(state => ({
-            ...state, 
-            [name]:value
+            ...state,
+            [name]: value
         }));
     }
 
     async function createFormHandler(e) {
-        e.preventDefault(); 
+        e.preventDefault();
+
+        const validationResult = validateMovieData(inputValues);
+
+        if (validationResult) {
+            setErr(validationResult);
+            return;
+        }
+
         const data = await createNewMovie(inputValues, token);
 
-        if(data.hasOwnProperty('msg')){
+        if (data.hasOwnProperty('msg')) {
             setErr(data.message);
             return;
-        } 
+        }
 
-        setMovies(state=> [...state, data]); 
+        setMovies(data);
 
         setInputValue({
             title: '',
@@ -50,18 +59,18 @@ export function CreateForm({setMovies}) {
                 <div className="row">
                     <div className="col-md-12 form-it">
                         <label>Movie title</label>
-                        <input type="text" name="title" placeholder="Enter title" value={inputValues.title} onChange={inputHandler}/>
+                        <input type="text" name="title" placeholder="Enter title" value={inputValues.title} onChange={inputHandler} />
                     </div>
                     <div className="col-md-12 form-it">
                         <label>Movie description</label>
-                        <input type="text" name="description" placeholder="Enter description" value={inputValues.description} onChange={inputHandler}/>
+                        <input type="text" name="description" placeholder="Enter description" value={inputValues.description} onChange={inputHandler} />
                     </div>
                     <div className="col-md-12 form-it">
                         <label>Movie ImageURL</label>
-                        <input type="text" name="img" placeholder="Enter imgURL" value={inputValues.img} onChange={inputHandler}/>
+                        <input type="text" name="img" placeholder="Enter imgURL" value={inputValues.img} onChange={inputHandler} />
                     </div>
-                    <div className="col-md-12 ">
-                        {err ?? <span>{err}</span>}
+                    <div className="col-md-12 " style={{color: 'white'}}>
+                        {err ?? <p style={{color: 'white'}}>{err}</p>}
                         <input className="submit" type="submit" value="Create" />
                     </div>
                 </div>
