@@ -16,7 +16,7 @@ export function MainView() {
 							<div className="title-in">
 								<div className="cate">
 								</div>
-								<h6><Link to="/">React Movies by Zlatin Zlatinov</Link></h6>
+								<h6><Link to="/">Block Buster Movies</Link></h6>
 							</div>
 						</div>
 

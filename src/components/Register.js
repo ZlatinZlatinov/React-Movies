@@ -76,7 +76,8 @@ export function RegisterComponent() {
                                         placeholder="john_cena@wwe.com"
                                         required="required"
                                         value={inputValues.email}
-                                        onChange={inputHandler} />
+                                        onChange={inputHandler} 
+                                        style={{textTransform:'lowercase'}}/>
                                 </label>
                             </div>
                             <div className="row">

@@ -30,7 +30,7 @@ export function MovieList() {
         fetch(url)
             .then(response => response.json())
             .then(m => {
-                setMovies(m);
+                setMovies(m.slice(3));
                 const pages = Math.ceil(m.length / 5);
                 setPageCount(pages);
                 setIsloading(false);

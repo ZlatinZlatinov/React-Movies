@@ -15,8 +15,8 @@ export function MovieCard({ movie }) {
             <div className="mv-item-infor">
                 <h6><Link to={`/details/${movie._id}`}>{movie.title}</Link></h6>
                 <p className="rate" style={{color: 'goldenrod'}}><FontAwesomeIcon icon={faStar}/></p>
-                <p className="describe">{movie.description}</p>
-                <p className="run-time"> Created on:<span>{numToDate(movie._createdOn)}</span></p>
+                <p className="describe">{(movie.description).slice(0,70) + '...'}</p>
+                <p className="run-time"> Post created on:<span>{numToDate(movie._createdOn)}</span></p>
                 <p>Title: <span>{movie.title}</span></p>
             </div>
         </div>

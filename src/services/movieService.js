@@ -11,13 +11,18 @@ export async function createNewMovie(movieData, token) {
                 'X-Authorization': token
             },
             body: JSON.stringify(movieData)
-        });
+        }); 
 
-        const result = await response.json();
+        if(response.status === 200){
+            const result = await response.json();
+            return result;
+        }
 
-        return result;
+        msg = 'Opps... something went wrong!';        
+
 
     } catch (err) {
+        console.log(err);
         msg = 'No connection with the server!';
     }
 

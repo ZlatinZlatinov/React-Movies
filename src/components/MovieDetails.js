@@ -77,7 +77,7 @@ export function MovieDetails() {
                         <div className="col-md-8 col-sm-12 col-xs-12">
                             <div className="movie-single-ct main-content">
                                 {/* Movie Title */}
-                                <h1 className="bd-hd">{movie.title} <span>2015</span></h1>
+                                <h1 className="bd-hd">{movie.title} <span>{movie.year}</span></h1>
                                 {isAuth && <>
                                     {(movie._ownerId !== auth().userId) ? <SocialComponent movieId={movieId} /> : <></>}
                                 </>}
@@ -94,7 +94,7 @@ export function MovieDetails() {
                                                         <p style={{fontSize: '1.7rem'}}>{movie.description}</p>
 
                                                         <div className="title-hd-sm">
-                                                            <h4>User reviews</h4>
+                                                            <h4>Watch trailer:</h4>
 
                                                         </div>
                                                         {/* <!-- movie user review --> */}
@@ -110,19 +110,15 @@ export function MovieDetails() {
                                                     <div className="col-md-4 col-xs-12 col-sm-12">
                                                         <div className="sb-it">
                                                             <h6>Director: </h6>
-                                                            <p><a href="/">Joss Whedon</a></p>
+                                                            <p>{movie.director}</p>
                                                         </div>
                                                         <div className="sb-it">
                                                             <h6>Genre:</h6>
-                                                            <p><a href="/">Action, </a> <a href="/"> Sci-Fi,</a> <a href="/">Adventure</a></p>
+                                                            <p>{movie.genre}</p>
                                                         </div>
                                                         <div className="sb-it">
-                                                            <h6>Release Date:</h6>
-                                                            <p>May 1, 2015 (U.S.A)</p>
-                                                        </div>
-                                                        <div className="sb-it">
-                                                            <h6>Run Time:</h6>
-                                                            <p>141 min</p>
+                                                            <h6>Year</h6>
+                                                            <p>{movie.year}</p>
                                                         </div>
                                                         {/* Check for user and display adds */}
                                                         {/* <div className="ads">

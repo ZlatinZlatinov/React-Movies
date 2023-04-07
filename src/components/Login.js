@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { MainView } from './MainView';
-import { useState,  } from 'react';
+import { useState, } from 'react';
 import { logUser } from '../services/userService';
 import { useSignIn } from 'react-auth-kit';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -25,7 +25,7 @@ export function LoginComponent() {
         event.preventDefault();
 
         const result = await logUser({ email, password }, 'login');
-        
+
         if (result.hasOwnProperty('msg')) {
             setErr(result.msg);
             return;
@@ -33,9 +33,9 @@ export function LoginComponent() {
 
         signIn({
             token: result.accessToken,
-            expiresIn: 3600,
+            expiresIn: 180, // in minutes
             tokenType: 'Bearer',
-            authState: { email: result.email, userId: result._id, token : result.accessToken }
+            authState: { email: result.email, userId: result._id, token: result.accessToken }
         });
 
         navigate('/');
@@ -45,7 +45,7 @@ export function LoginComponent() {
         <>
             <div className="overlay openform">
                 <div className="login-wrapper" id="login-content" >
-                    <div className="row" style={{ paddingLeft: '14px', fontSize:'12pt' }}>
+                    <div className="row" style={{ paddingLeft: '14px', fontSize: '12pt' }}>
                         <Link style={{ color: 'white' }} to="/"><FontAwesomeIcon icon={faCircleXmark} /> Close</Link>
                     </div>
                     <div className="login-content">
@@ -53,15 +53,28 @@ export function LoginComponent() {
                         <form method="post" onSubmit={loginFormHandler}>
                             <div className="row">
                                 <label htmlFor="username">
-                                    Username:
-                                    <input type="text" name="username" id="username" placeholder="john_cena@wwe.com" required="required" value={email} onChange={usernameHandler} />
+                                    Email:
+                                    <input type="text"
+                                        name="username"
+                                        id="username"
+                                        placeholder="john_cena@wwe.com"
+                                        required="required"
+                                        value={email}
+                                        onChange={usernameHandler}
+                                        style={{ textTransform: 'lowercase' }} />
                                 </label>
                             </div>
 
                             <div className="row">
                                 <label htmlFor="password">
                                     Password:
-                                    <input type="password" name="password" id="password" placeholder="******" required="required" value={password} onChange={passwordHandler} />
+                                    <input type="password"
+                                        name="password"
+                                        id="password"
+                                        placeholder="******"
+                                        required="required"
+                                        value={password}
+                                        onChange={passwordHandler} />
                                 </label>
                             </div>
                             <div className="row">

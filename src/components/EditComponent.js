@@ -14,7 +14,10 @@ export function EditComponent({ setClick, movie, setMovie }) {
     const [inputValues, setInputValues] = useState({
         title: movie.title,
         description: movie.description,
-        img: movie.img
+        img: movie.img,
+        director: movie.director,
+        year: movie.year,
+        trailer: movie.trailer
     });
 
     function inputHandler(e) {
@@ -47,7 +50,7 @@ export function EditComponent({ setClick, movie, setMovie }) {
         <div className="overlay openform">
             <div className="login-wrapper" id="signup-content">
                 <div className="row" style={{ paddingLeft: '18px' }}>
-                    <button style={{ color: 'white', background: 'rgba(7,9,10,255)', border: 'none', fontSize:'12pt' }}
+                    <button style={{ color: 'white', background: 'rgba(7,9,10,255)', border: 'none', fontSize: '12pt' }}
                         onClick={closeView}><FontAwesomeIcon icon={faCircleXmark} /> Close</button>
                 </div>
                 <div className="login-content">
@@ -73,6 +76,42 @@ export function EditComponent({ setClick, movie, setMovie }) {
                                     id="password-2"
                                     required="required"
                                     value={inputValues.description}
+                                    onChange={inputHandler}
+                                />
+                            </label>
+                        </div>
+                        <div className="row">
+                            <label htmlFor="password-2">
+                                Movie director:
+                                <input type="text"
+                                    name="director"
+                                    id="password-2"
+                                    required="required"
+                                    value={inputValues.director}
+                                    onChange={inputHandler}
+                                />
+                            </label>
+                        </div>
+                        <div className="row">
+                            <label htmlFor="password-2">
+                                Year:
+                                <input type="text"
+                                    name="year"
+                                    id="password-2"
+                                    required="required"
+                                    value={inputValues.year}
+                                    onChange={inputHandler}
+                                />
+                            </label>
+                        </div>
+                        <div className="row">
+                            <label htmlFor="password-2">
+                                Trailer Link:
+                                <input type="text"
+                                    name="trailer"
+                                    id="password-2"
+                                    required="required"
+                                    value={inputValues.trailer}
                                     onChange={inputHandler}
                                 />
                             </label>

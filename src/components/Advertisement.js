@@ -3,7 +3,7 @@ const url = 'https://www.templateshub.net/uploads/1549900162%20Movie-Database-mi
 export function Advertisement() {
     return (
         <div className="ads">
-            <span>Your advertisement here:</span>
+            <span>Advertisement:</span>
             <img src={url} alt="None" />
         </div>
     );
