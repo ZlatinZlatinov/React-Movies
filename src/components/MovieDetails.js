@@ -8,6 +8,7 @@ import { deleteMovieByID } from '../services/movieService';
 import { EditComponent } from './EditComponent';
 import { MovieDetailsHero } from './MovieDetailsHero';
 import { SocialComponent } from './SocialComponent';
+import { MovieTrailer } from './MovieTrailer';
 //import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 
 
@@ -91,21 +92,14 @@ export function MovieDetails() {
                                                 <div className="row">
                                                     <div className="col-md-8 col-sm-12 col-xs-12">
                                                         {/* Movie DEscription: */}
-                                                        <p style={{fontSize: '1.7rem'}}>{movie.description}</p>
+                                                        <p style={{ fontSize: '1.7rem' }}>{movie.description}</p>
 
                                                         <div className="title-hd-sm">
                                                             <h4>Watch trailer:</h4>
 
                                                         </div>
                                                         {/* <!-- movie user review --> */}
-                                                        <div className="mv-user-review-item">
-                                                            <h3>Best Marvel movie in my opinion</h3>
-                                                            <p className="time">
-                                                                17 December 2016 by <a href="/"> hawaiipierson</a>
-                                                            </p>
-                                                            {/* Option for user Review */}
-                                                            <p>Maybe we can add some user reviw here, but idk...</p>
-                                                        </div>
+                                                        <MovieTrailer link={movie.trailer} />
                                                     </div>
                                                     <div className="col-md-4 col-xs-12 col-sm-12">
                                                         <div className="sb-it">
