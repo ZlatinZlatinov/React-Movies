@@ -104,7 +104,7 @@ export function EditComponent({ setClick, movie, setMovie }) {
                                 />
                             </label>
                         </div>
-                        <div className="row">
+                        {/* <div className="row">
                             <label htmlFor="password-2">
                                 Trailer Link:
                                 <input type="text"
@@ -115,7 +115,7 @@ export function EditComponent({ setClick, movie, setMovie }) {
                                     onChange={inputHandler}
                                 />
                             </label>
-                        </div>
+                        </div> */}
                         <div className="row">
                             <label htmlFor="repassword-2">
                                 Movie img url:

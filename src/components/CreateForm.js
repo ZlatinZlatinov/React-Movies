@@ -87,10 +87,10 @@ export function CreateForm({ setMovies }) {
                         <label>Movie ImageURL</label>
                         <input type="text" name="img" placeholder="Enter imgURL" value={inputValues.img} onChange={inputHandler} />
                     </div> 
-                    <div className="col-md-12 form-it">
+                    {/* <div className="col-md-12 form-it">
                         <label>Trailer Link</label>
                         <input type="text" name="trailer" placeholder="Link to movie trailer" value={inputValues.trailer} onChange={inputHandler} />
-                    </div>
+                    </div> */}
                     <div className="col-md-12 form-it">
                         <label>Select Genre</label>
                         <div className="group-ip">
