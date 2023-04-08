@@ -5,16 +5,13 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 
 export function MovieTrailer({ movieId, comments, pushComments, owner }) {
+    const userInfo = useAuthUser();
+    const { token, userId, email } = userInfo();
+
     const [inputValues, setInputValue] = useState({
-        email: '',
+        email: email,
         comment: '',
     });
-
-
-
-    const userInfo = useAuthUser();
-    const { token, userId } = userInfo();
-    //const url = `http://localhost:3030/data/comments?where=movieId%3D%22${movieId}`;
 
     function inputHandler(e) {
         const name = e.target.name;
@@ -32,7 +29,7 @@ export function MovieTrailer({ movieId, comments, pushComments, owner }) {
         const result = await sendComment(movieId, inputValues, token);
 
         setInputValue({
-            email: '',
+            email: email,
             comment: '',
         })
 
@@ -61,11 +58,11 @@ export function MovieTrailer({ movieId, comments, pushComments, owner }) {
                 <div className="comment-form">
                     <h4>Leave a comment</h4>
                     <form method="POST" onSubmit={commentHandler}>
-                        <div className="row">
+                        {/* <div className="row">
                             <div className="col-md-4">
                                 <input type="text" name="email" placeholder="Your email" value={inputValues.email} onChange={inputHandler} />
                             </div>
-                        </div>
+                        </div> */}
                         <div className="row">
                             <div className="col-md-12">
                                 <textarea name="comment" id='message' cols={30} rows={10} placeholder="Message" value={inputValues.comment} onChange={inputHandler}></textarea>

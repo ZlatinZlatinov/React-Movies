@@ -5,15 +5,15 @@ export function About() {
 
 
     return ( // nope, guess i wont use that for now...
-        <><div class="hero common-hero">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="hero-ct">
+        <><div className="hero common-hero">
+            <div className="container">
+                <div className="row">
+                    <div className="col-md-12">
+                        <div className="hero-ct">
                             <h1> About</h1>
-                            <ul class="breadcumb">
-                                <li class="active"><a href="/">Home</a></li>
-                                <li> <span class="ion-ios-arrow-right"></span>About</li>
+                            <ul className="breadcumb">
+                                <li className="active"><a href="/">Home</a></li>
+                                <li> <span className="ion-ios-arrow-right"></span>About</li>
                             </ul>
                         </div>
                     </div>
@@ -33,10 +33,6 @@ export function About() {
 
                                     It's always fun to hypothetically cast the most popular actors of a decade, and attempt to fit their personality and on-screen presence to a specific character. Who might have played Iron Man (considering Robert Downey Jr. was still an avid socialite)? What would happen if the MCU started 20 years ago? There are dozens of actors and actresses who almost made it into Marvel movies, and several of them could have led their own franchises at the height of their '90s popularity.
                                 </p>
-
-
-
-
                             </div>
                         </div>
                     </div>
