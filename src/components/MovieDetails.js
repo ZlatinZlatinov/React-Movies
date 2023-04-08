@@ -62,7 +62,9 @@ export function MovieDetails() {
             .then(response => {
                 if (response.status === 200) {
                     return response.json();
-                }
+                } 
+
+                navigate('*');
             })
             .then(result => setComments(result))
             .catch(err => console.log(err))
