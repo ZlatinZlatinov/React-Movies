@@ -11,6 +11,7 @@ export function CreateForm({ setMovies }) {
         director: '',
         img: '',
         genre: 'Action', 
+        year: '',
         trailer: '',
     });
 

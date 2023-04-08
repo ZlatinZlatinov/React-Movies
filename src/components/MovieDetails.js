@@ -8,7 +8,7 @@ import { deleteMovieByID } from '../services/movieService';
 import { EditComponent } from './EditComponent';
 import { MovieDetailsHero } from './MovieDetailsHero';
 import { SocialComponent } from './SocialComponent';
-import { MovieTrailer } from './MovieTrailer';
+import { MovieTrailer } from './MovieComments';
 //import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 
 
@@ -20,7 +20,10 @@ export function MovieDetails() {
 
     const { movieId } = useParams();
     const url = `http://localhost:3030/data/movies/${movieId}`;
+    const url2 = `http://localhost:3030/data/comments?where=movieId%3D%22${movieId}%22`;
     const [movie, setMovie] = useState({});
+
+    const [comments, setComments] = useState([]);
 
     const [isClicked, setClick] = useState(false);
 
@@ -38,6 +41,10 @@ export function MovieDetails() {
         }
     }
 
+    function pushComments(comment) {
+        setComments(state => [...state, comment]);
+    }
+
     useEffect(() => {
         fetch(url)
             .then(res => {
@@ -51,7 +58,16 @@ export function MovieDetails() {
             .catch(err => {
                 console.log(err);
             });
-    }, [url, navigate]);
+        fetch(url2)
+            .then(response => {
+                if (response.status === 200) {
+                    return response.json();
+                }
+            })
+            .then(result => setComments(result))
+            .catch(err => console.log(err))
+
+    }, [url, navigate, url2]);
 
 
     return (
@@ -95,11 +111,12 @@ export function MovieDetails() {
                                                         <p style={{ fontSize: '1.7rem' }}>{movie.description}</p>
 
                                                         <div className="title-hd-sm">
-                                                            <h4>Watch trailer:</h4>
+                                                            <h4>Comments:</h4>
 
                                                         </div>
                                                         {/* <!-- movie user review --> */}
-                                                        <MovieTrailer link={movie.trailer} />
+                                                        {isAuth &&
+                                                            <MovieTrailer movieId={movie._id} comments={comments} pushComments={pushComments} owner={movie._ownerId} />}
                                                     </div>
                                                     <div className="col-md-4 col-xs-12 col-sm-12">
                                                         <div className="sb-it">
