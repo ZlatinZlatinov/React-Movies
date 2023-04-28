@@ -30,5 +30,7 @@ Movies catalog using ReactJS
   - ### You wont see the carousel on the home page because the app is making a request to an API  from [The Movie DataBase](https://www.themoviedb.org/) , for which it needs a token, but I can't let you have mine. 
   - ### So you can register there and get yourself a token and see how the carousel works. You can watch [this](https://www.youtube.com/watch?v=FlFyrOEz2S4) video for more information about the API 
   - ### Once you get yourself a token, go in the App.js file and in the routes homepage path ('/') replace the MainView component with the MovieSlider component and hit save 
-  - ### Also you will need to replace in the MovieSlider component the 'url' and the 'imgSrc' with your own using the token you have.
+  - ### Also you will need to replace in the MovieSlider component the 'url' and the 'imgSrc' with your own using the token you have. 
+  
+## Link to YouTube Demo: [link](https://youtu.be/yYy0S44OdcU)
   
