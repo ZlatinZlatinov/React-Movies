@@ -65,7 +65,7 @@ export function MovieSlider() {
                             <div className="slick-multiItemSlider">
                                 <Carousel responsive={responsive}
                                     autoPlay={true}
-                                    autoPlaySpeed={2000}>
+                                    autoPlaySpeed={3000}>
                                     {moveis.map((m) => (
                                         <div className="movie-item" key={m.id}>
                                             <div className="mv-img">

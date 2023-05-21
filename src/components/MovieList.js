@@ -31,7 +31,7 @@ export function MovieList() {
             .then(response => response.json())
             .then(m => {
                 setMovies(m.slice(3));
-                const pages = Math.ceil(m.length / 5);
+                const pages = Math.ceil((m.length - 3) / 5);
                 setPageCount(pages);
                 setIsloading(false);
             })

@@ -4,7 +4,7 @@ import { sendComment } from "../services/commentsService";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 
-export function MovieTrailer({ movieId, comments, pushComments, owner }) {
+export function MovieComment({ movieId, comments, pushComments, owner }) {
     const userInfo = useAuthUser();
     const { token, userId, email } = userInfo();
 

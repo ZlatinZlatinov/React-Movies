@@ -8,7 +8,7 @@ import { deleteMovieByID } from '../services/movieService';
 import { EditComponent } from './EditComponent';
 import { MovieDetailsHero } from './MovieDetailsHero';
 import { SocialComponent } from './SocialComponent';
-import { MovieTrailer } from './MovieComments';
+import { MovieComment } from './MovieComments';
 //import { faThumbsUp } from '@fortawesome/free-regular-svg-icons';
 
 
@@ -118,7 +118,7 @@ export function MovieDetails() {
                                                         </div>
                                                         {/* <!-- movie user review --> */}
                                                         {isAuth &&
-                                                            <MovieTrailer movieId={movie._id} comments={comments} pushComments={pushComments} owner={movie._ownerId} />}
+                                                            <MovieComment movieId={movie._id} comments={comments} pushComments={pushComments} owner={movie._ownerId} />}
                                                     </div>
                                                     <div className="col-md-4 col-xs-12 col-sm-12">
                                                         <div className="sb-it">
