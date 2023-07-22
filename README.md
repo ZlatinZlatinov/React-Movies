@@ -4,8 +4,7 @@ Movies catalog using ReactJS
 
 ## Set-up the project: 
 
- - ### To start the project you will need The SoftUni practice server, read the documentation [here](https://github.com/softuni-practice-server/softuni-practice-server) and Node.js installed 
- - ### Once you have The practice server, open the folder ( with cmd or VSC for example) and run the server.js file (use: node server.js) 
+
  - ### Download the project form [here](https://github.com/ZlatinZlatinov/React-Movies/archive/refs/heads/main.zip)(ofcourse)
  - ### Extract it in a separate folder
  - ### I would recommed using VSC, so that you can open the folder with VSC and run in the console npm install, but you can use cmd or something like that 
